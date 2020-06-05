@@ -3,9 +3,20 @@
 @import './config';
 @import './components';
 
+
 html {
     overflow-x: hidden;
+
     body {
-        min-height: 100vh;
+        min-height: 100%;
+        height: 100vh;
+        overflow-x: hidden;
+
+        
     }
+}
+
+a{
+    color: $primary--dk-blue;
+    text-decoration: none;
 }
