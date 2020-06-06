@@ -1,9 +1,9 @@
 header {
-    position: sticky;
+    position: absolute;
+    min-width: 100%;
     top: 0;
     display: flex;
     flex-wrap: wrap;
-    width: 100vw;
 
     .navbar-controls {
         flex: 1 1 100%;
@@ -53,8 +53,18 @@ header {
             transition: all .5s ease-in-out;
             
             &__item {
-                margin: .5rem;
                 font-weight: weight(medium);
+                margin: .5rem;
+
+                &__link {
+                    padding: .25rem;
+                    border-bottom: 3px solid transparent;
+                    @include transition-ease;
+
+                    &:hover {
+                        border-bottom: 3px solid $primary--lime-green;
+                    }
+                }
 
                 &:last-child {
                     display: none;
@@ -84,17 +94,94 @@ header {
     }
 }
 
-@keyframes show-menu {
-    from {
-        background: red;
-    }
+@include media-lg {
+    header {
+        background: $white;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem 5rem;
 
-    50% {
-        background: blue;
-    }
+        .navbar-controls {
+            flex: 1;
+            padding: 0;
+            background: none;
 
-    to {
-        background: green;
+            &__toggle {
+                display: none;
+            }
+        }
+
+        .nav-container {
+            flex: 2;
+            background: none;
+            position: relative;
+            transform: translateY(0);
+            opacity: 1;
+            width: fit-content;
+            height: unset;
+            margin: 0;
+
+            .nav {
+                transform: translateY(0);
+                flex-direction: row;
+                padding: 0;
+                margin: 0;
+                align-items: center;
+                justify-content: center;
+
+                &__item {
+                    flex: 1;
+                    min-width: 75px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0;
+
+                    &__link {
+                        padding: 0;
+                        width: 75px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: weight(light);
+                        border-bottom: none;
+                        @include transition-ease;
+
+                        &::after {
+                            content: '';
+                            margin-top: 1.83rem;
+                            position: absolute;
+                            top: 5rem;
+                            display: block;
+                            height: 5px;
+                            min-width: 75px;
+                            top: 1.5rem;
+                            background: none;
+                            @include transition-ease;
+                        }
+                        
+                        &:hover {
+                            font-weight: weight(medium);
+                            border-bottom: none;
+                            
+                            &::after {
+                                content: '';
+                                background: linear-gradient(to right, $primary--lime-green, $primary--bright-cyan);
+                            }
+                        }
+                    }
+
+                    
+                    &:last-child {
+                        flex: 5;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
     }
 }
+
 
